@@ -19,7 +19,7 @@ function decrypt(data) {
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.send('server monitoring');
+  res.send('server monitoring revision');
 });
 
 // Endpoint untuk mendapatkan data (belombisa)
