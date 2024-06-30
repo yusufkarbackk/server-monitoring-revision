@@ -1,10 +1,10 @@
 const admin = require('firebase-admin')
-var serviceAccount = require("./service-account-revision.json");
+var serviceAccount = require("./blabla-86f2c-firebase-adminsdk-1ymhr-b0feeac347.json");
 
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://server-monitoring-revision-default-rtdb.asia-southeast1.firebasedatabase.app/"
+    databaseURL: "https://blabla-86f2c-default-rtdb.firebaseio.com/"
 });
 
 module.exports = admin
