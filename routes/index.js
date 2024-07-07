@@ -22,7 +22,6 @@ router.get('/', function (req, res, next) {
   res.send('server monitoring revision');
 });
 
-// Endpoint untuk mendapatkan data (belombisa)
 router.get('/get-data', (req, res) => {
   admin.database().ref('sensorData').once('value').then((snapshot) => {
     const data = snapshot.val();
@@ -38,11 +37,10 @@ router.post('/post-data', async (req, res) => {
   try {
     const { suhu, kelembaban, teganganAC } = req.body;
 
+    //enkripsi data
     const hashedSuhu = encrypt(String(suhu))
     const hashedKelembaban = encrypt(String(kelembaban))
     const hashedTeganganAC = encrypt(String(teganganAC))
-    // await admin.database().ref('sensorData').push({ suhu: suhu, kelembaban: kelembaban, teganganAC: teganganAC });
-
 
     // Save data to Firebase Realtime Database
     await admin.database().ref('sensorData').push({ suhu: hashedSuhu, kelembaban: hashedKelembaban, teganganAC: hashedTeganganAC });
@@ -54,6 +52,7 @@ router.post('/post-data', async (req, res) => {
   }
 });
 
+//fungsi untuk dekrip data sebelum tampil ke user
 router.post('/decrypt-data', async (req, res) => {
   try {
     const {encryptedSuhu, encryptedKelembaban, encryptedTeganganAC} = req.body
